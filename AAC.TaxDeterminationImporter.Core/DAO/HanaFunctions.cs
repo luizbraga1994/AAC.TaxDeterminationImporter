@@ -1,0 +1,61 @@
+namespace AAC.TaxDeterminationImporter.Core.DAO
+{
+    internal static class HanaFunctions
+    {
+        internal const string FN_TAXCODE_EXPORT =
+            @"CREATE OR REPLACE FUNCTION FN_TAXCODE_EXPORT(keyType INT, keyValue NVARCHAR(200))
+RETURNS description NVARCHAR(1000)
+LANGUAGE SQLSCRIPT
+SQL SECURITY INVOKER AS
+BEGIN
+    SELECT
+    CASE WHEN keyType IN (1, 2, 6, 16, 17)
+        THEN keyValue
+        ELSE
+        CASE keyType
+            WHEN 3 THEN OMGP.""Descrip""
+            WHEN 5 THEN ONCM.""NcmCode""
+            WHEN 9 THEN OITB.""ItmsGrpNam""
+            WHEN 11 THEN OCRG.""GroupName""
+            WHEN 12 THEN OCRG.""GroupName""
+            ELSE keyValue
+        END
+    END
+    INTO description
+    FROM DUMMY
+        LEFT JOIN OMGP ON TO_VARCHAR(OMGP.""AbsEntry"") = keyValue AND keyType = 3
+        LEFT JOIN ONCM ON TO_VARCHAR(ONCM.""AbsEntry"") = keyValue AND keyType = 5
+        LEFT JOIN OITB ON TO_VARCHAR(OITB.""ItmsGrpCod"") = keyValue AND keyType = 9
+        LEFT JOIN OCRG ON TO_VARCHAR(OCRG.""GroupCode"") = keyValue AND keyType IN (11, 12);
+END;";
+
+        internal const string FN_GET_KEYFIELDDESCRIPTION =
+            @"CREATE OR REPLACE FUNCTION FN_GET_KEYFIELDDESCRIPTION(keyType INT, keyValue NVARCHAR(200))
+RETURNS description NVARCHAR(1000)
+LANGUAGE SQLSCRIPT
+SQL SECURITY INVOKER AS
+BEGIN
+    SELECT
+    CASE WHEN keyType IN (1, 2, 6, 17)
+        THEN keyValue
+        ELSE
+        CASE keyType
+            WHEN 3 THEN OMGP.""Descrip""
+            WHEN 5 THEN ONCM.""NcmCode""
+            WHEN 9 THEN OITB.""ItmsGrpNam""
+            WHEN 11 THEN OCRG.""GroupName""
+            WHEN 12 THEN OCRG.""GroupName""
+            WHEN 16 THEN OBPL.""BPLName""
+            ELSE keyValue
+        END
+    END
+    INTO description
+    FROM DUMMY
+        LEFT JOIN OMGP ON TO_VARCHAR(OMGP.""AbsEntry"") = keyValue AND keyType = 3
+        LEFT JOIN ONCM ON TO_VARCHAR(ONCM.""AbsEntry"") = keyValue AND keyType = 5
+        LEFT JOIN OITB ON TO_VARCHAR(OITB.""ItmsGrpCod"") = keyValue AND keyType = 9
+        LEFT JOIN OCRG ON TO_VARCHAR(OCRG.""GroupCode"") = keyValue AND keyType IN (11, 12)
+        LEFT JOIN OBPL ON TO_VARCHAR(OBPL.""BPLId"") = keyValue AND keyType = 16;
+END;";
+    }
+}
