@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ARD>
+  <General>
+    <Name>AAC.TaxDeterminationImporter</Name>
+    <Version>1.0.0.0</Version>
+    <Provider>AAC</Provider>
+    <Namespace>AAC.TaxDeterminationImporter</Namespace>
+    <SupportedDB>HANA</SupportedDB>
+    <ClientType>Both</ClientType>
+    <ContactData></ContactData>
+    <Multiversion>false</Multiversion>
+  </General>
+  <ExtensionFiles>
+    <SBOAddon64>
+      <StartupPath>AAC.TaxDeterminationImporter.exe</StartupPath>
+    </SBOAddon64>
+  </ExtensionFiles>
+  <DeploymentSteps>
+  </DeploymentSteps>
+  <SBOCompatibility>
+    <SBOVersion From="10.0" />
+  </SBOCompatibility>
+</ARD>
