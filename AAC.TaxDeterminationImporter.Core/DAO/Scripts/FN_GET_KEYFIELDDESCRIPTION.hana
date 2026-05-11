@@ -24,7 +24,7 @@ BEGIN
 	END
 
 	INTO description
-	FROM TCD1
+	FROM DUMMY
 		LEFT JOIN OMGP
 			ON TO_VARCHAR(OMGP."AbsEntry") = keyValue AND keyType = 3
 		LEFT JOIN ONCM
@@ -34,6 +34,5 @@ BEGIN
 		LEFT JOIN OCRG
 			ON TO_VARCHAR(OCRG."GroupCode") = keyValue AND keyType IN (11, 12)
 		LEFT JOIN OBPL
-			ON TO_VARCHAR(OBPL."BPLId") = keyValue AND keyType = 16
-	LIMIT 1;
+			ON TO_VARCHAR(OBPL."BPLId") = keyValue AND keyType = 16;
 END;

@@ -23,7 +23,7 @@ BEGIN
 	END
 
 	INTO description
-	FROM TCD1
+	FROM DUMMY
 		LEFT JOIN OMGP
 			ON TO_VARCHAR(OMGP."AbsEntry") = keyValue AND keyType = 3
 		LEFT JOIN ONCM
@@ -31,6 +31,5 @@ BEGIN
 		LEFT JOIN OITB
 			ON TO_VARCHAR(OITB."ItmsGrpCod") = keyValue AND keyType = 9
 		LEFT JOIN OCRG
-			ON TO_VARCHAR(OCRG."GroupCode") = keyValue AND keyType IN (11, 12)
-	LIMIT 1;
+			ON TO_VARCHAR(OCRG."GroupCode") = keyValue AND keyType IN (11, 12);
 END;
