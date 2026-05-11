@@ -57,10 +57,45 @@ namespace AAC.TaxDeterminationImporter.Core.Forms
 
                     Button bt_Export = (Button)it_Export.Specific;
                     bt_Export.Caption = "Exportar";
+
+                    var it_Help = Form.Items.Add("bt_Help", BoFormItemTypes.it_BUTTON);
+                    it_Help.LinkTo = "2002";
+                    it_Help.Top = itemBase.Top;
+                    it_Help.Width = 60;
+                    it_Help.Left = itemBase.Left - 380;
+                    it_Help.Height = itemBase.Height;
+
+                    Button bt_Help = (Button)it_Help.Specific;
+                    bt_Help.Caption = "Ajuda";
                 }
 
                 if (ItemEventInfo.EventType == BoEventTypes.et_CLICK)
                 {
+                    if (ItemEventInfo.ItemUID == "bt_Help")
+                    {
+                        SBOApp.Application.MessageBox(
+                            "AAC Tax Determination Importer - Instruções de Uso\r\n" +
+                            "──────────────────────────────────────────────\r\n\r\n" +
+                            "IMPORTAR\r\n" +
+                            "1. Selecione uma linha na grade de determinação.\r\n" +
+                            "2. Clique em 'Importar' e escolha um arquivo Excel (.xlsx).\r\n" +
+                            "3. O arquivo deve conter os campos de chave nas colunas A-E,\r\n" +
+                            "   datas nas colunas F-G e os códigos de imposto a partir da coluna H.\r\n" +
+                            "4. Erros de validação serão exibidos em um log antes da importação.\r\n\r\n" +
+                            "EXPORTAR\r\n" +
+                            "1. Selecione uma linha na grade de determinação.\r\n" +
+                            "2. Clique em 'Exportar' e escolha a pasta de destino.\r\n" +
+                            "3. Um arquivo Excel será gerado com todos os valores da linha selecionada.\r\n\r\n" +
+                            "REMOVER VALORES\r\n" +
+                            "1. Selecione uma linha na grade de determinação.\r\n" +
+                            "2. Clique em 'Remover Valores'.\r\n" +
+                            "3. Na janela aberta, selecione as linhas a remover e confirme.\r\n\r\n" +
+                            "Obs.: As ações de Importar, Exportar e Remover Valores\r\n" +
+                            "estão disponíveis apenas com o formulário em modo de edição (OK).",
+                            1, "Fechar");
+                        return true;
+                    }
+
                     if (ItemEventInfo.ItemUID == "bt_Import" || ItemEventInfo.ItemUID == "bt_Remove" || ItemEventInfo.ItemUID == "bt_Export")
                     {
                         if (Form.Mode == BoFormMode.fm_OK_MODE)
