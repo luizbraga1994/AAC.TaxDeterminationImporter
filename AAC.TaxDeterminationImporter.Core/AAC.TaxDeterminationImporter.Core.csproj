@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="SBO.Hub">
       <HintPath>..\..\..\..\Util\DLL\SBO.Hub.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

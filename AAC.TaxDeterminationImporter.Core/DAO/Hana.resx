@@ -164,11 +164,46 @@ AND TCD1."Priority" = {0}</value>
   <data name="TaxDeterminationValues_GetToExport" xml:space="preserve">
     <value>SELECT
 	TCD2."AbsId" "Tcd2Id",
-	FN_TAXCODE_EXPORT(TCD1."KeyFld_1", TCD2."KeyFld_1_V") "Value1",
-	FN_TAXCODE_EXPORT(TCD1."KeyFld_2", TCD2."KeyFld_2_V") "Value2",
-	FN_TAXCODE_EXPORT(TCD1."KeyFld_3", TCD2."KeyFld_3_V") "Value3",
-	FN_TAXCODE_EXPORT(TCD1."KeyFld_4", TCD2."KeyFld_4_V") "Value4",
-	FN_TAXCODE_EXPORT(TCD1."KeyFld_5", TCD2."KeyFld_5_V") "Value5",
+	CASE
+		WHEN TCD1."KeyFld_1" IN (1, 2, 6, 16, 17) THEN TCD2."KeyFld_1_V"
+		WHEN TCD1."KeyFld_1" = 3 THEN (SELECT "Descrip" FROM OMGP WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_1_V")
+		WHEN TCD1."KeyFld_1" = 5 THEN (SELECT "NcmCode" FROM ONCM WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_1_V")
+		WHEN TCD1."KeyFld_1" = 9 THEN (SELECT "ItmsGrpNam" FROM OITB WHERE TO_VARCHAR("ItmsGrpCod") = TCD2."KeyFld_1_V")
+		WHEN TCD1."KeyFld_1" IN (11, 12) THEN (SELECT "GroupName" FROM OCRG WHERE TO_VARCHAR("GroupCode") = TCD2."KeyFld_1_V")
+		ELSE TCD2."KeyFld_1_V"
+	END "Value1",
+	CASE
+		WHEN TCD1."KeyFld_2" IN (1, 2, 6, 16, 17) THEN TCD2."KeyFld_2_V"
+		WHEN TCD1."KeyFld_2" = 3 THEN (SELECT "Descrip" FROM OMGP WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_2_V")
+		WHEN TCD1."KeyFld_2" = 5 THEN (SELECT "NcmCode" FROM ONCM WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_2_V")
+		WHEN TCD1."KeyFld_2" = 9 THEN (SELECT "ItmsGrpNam" FROM OITB WHERE TO_VARCHAR("ItmsGrpCod") = TCD2."KeyFld_2_V")
+		WHEN TCD1."KeyFld_2" IN (11, 12) THEN (SELECT "GroupName" FROM OCRG WHERE TO_VARCHAR("GroupCode") = TCD2."KeyFld_2_V")
+		ELSE TCD2."KeyFld_2_V"
+	END "Value2",
+	CASE
+		WHEN TCD1."KeyFld_3" IN (1, 2, 6, 16, 17) THEN TCD2."KeyFld_3_V"
+		WHEN TCD1."KeyFld_3" = 3 THEN (SELECT "Descrip" FROM OMGP WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_3_V")
+		WHEN TCD1."KeyFld_3" = 5 THEN (SELECT "NcmCode" FROM ONCM WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_3_V")
+		WHEN TCD1."KeyFld_3" = 9 THEN (SELECT "ItmsGrpNam" FROM OITB WHERE TO_VARCHAR("ItmsGrpCod") = TCD2."KeyFld_3_V")
+		WHEN TCD1."KeyFld_3" IN (11, 12) THEN (SELECT "GroupName" FROM OCRG WHERE TO_VARCHAR("GroupCode") = TCD2."KeyFld_3_V")
+		ELSE TCD2."KeyFld_3_V"
+	END "Value3",
+	CASE
+		WHEN TCD1."KeyFld_4" IN (1, 2, 6, 16, 17) THEN TCD2."KeyFld_4_V"
+		WHEN TCD1."KeyFld_4" = 3 THEN (SELECT "Descrip" FROM OMGP WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_4_V")
+		WHEN TCD1."KeyFld_4" = 5 THEN (SELECT "NcmCode" FROM ONCM WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_4_V")
+		WHEN TCD1."KeyFld_4" = 9 THEN (SELECT "ItmsGrpNam" FROM OITB WHERE TO_VARCHAR("ItmsGrpCod") = TCD2."KeyFld_4_V")
+		WHEN TCD1."KeyFld_4" IN (11, 12) THEN (SELECT "GroupName" FROM OCRG WHERE TO_VARCHAR("GroupCode") = TCD2."KeyFld_4_V")
+		ELSE TCD2."KeyFld_4_V"
+	END "Value4",
+	CASE
+		WHEN TCD1."KeyFld_5" IN (1, 2, 6, 16, 17) THEN TCD2."KeyFld_5_V"
+		WHEN TCD1."KeyFld_5" = 3 THEN (SELECT "Descrip" FROM OMGP WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_5_V")
+		WHEN TCD1."KeyFld_5" = 5 THEN (SELECT "NcmCode" FROM ONCM WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_5_V")
+		WHEN TCD1."KeyFld_5" = 9 THEN (SELECT "ItmsGrpNam" FROM OITB WHERE TO_VARCHAR("ItmsGrpCod") = TCD2."KeyFld_5_V")
+		WHEN TCD1."KeyFld_5" IN (11, 12) THEN (SELECT "GroupName" FROM OCRG WHERE TO_VARCHAR("GroupCode") = TCD2."KeyFld_5_V")
+		ELSE TCD2."KeyFld_5_V"
+	END "Value5",
 	TCD3."EfctFrom" "DateFrom",
 	TCD3."EfctTo"	"DateTo"
 FROM TCD1
@@ -194,11 +229,51 @@ AND IFNULL("KeyFld_5_V", '') = '{5}'</value>
   <data name="TaxDetermination_GetFields" xml:space="preserve">
     <value>SELECT
 	'Y'	"#",
-	FN_GET_KEYFIELDDESCRIPTION(TCD1."KeyFld_1", TCD2."KeyFld_1_V") "{1}",
-	FN_GET_KEYFIELDDESCRIPTION(TCD1."KeyFld_2", TCD2."KeyFld_2_V") "{2}",
-	FN_GET_KEYFIELDDESCRIPTION(TCD1."KeyFld_3", TCD2."KeyFld_3_V") "{3}",
-	FN_GET_KEYFIELDDESCRIPTION(TCD1."KeyFld_4", TCD2."KeyFld_4_V") "{4}",
-	FN_GET_KEYFIELDDESCRIPTION(TCD1."KeyFld_5", TCD2."KeyFld_5_V") "{5}"
+	CASE
+		WHEN TCD1."KeyFld_1" IN (1, 2, 6, 17) THEN TCD2."KeyFld_1_V"
+		WHEN TCD1."KeyFld_1" = 3 THEN (SELECT "Descrip" FROM OMGP WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_1_V")
+		WHEN TCD1."KeyFld_1" = 5 THEN (SELECT "NcmCode" FROM ONCM WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_1_V")
+		WHEN TCD1."KeyFld_1" = 9 THEN (SELECT "ItmsGrpNam" FROM OITB WHERE TO_VARCHAR("ItmsGrpCod") = TCD2."KeyFld_1_V")
+		WHEN TCD1."KeyFld_1" IN (11, 12) THEN (SELECT "GroupName" FROM OCRG WHERE TO_VARCHAR("GroupCode") = TCD2."KeyFld_1_V")
+		WHEN TCD1."KeyFld_1" = 16 THEN (SELECT "BPLName" FROM OBPL WHERE TO_VARCHAR("BPLId") = TCD2."KeyFld_1_V")
+		ELSE TCD2."KeyFld_1_V"
+	END "{1}",
+	CASE
+		WHEN TCD1."KeyFld_2" IN (1, 2, 6, 17) THEN TCD2."KeyFld_2_V"
+		WHEN TCD1."KeyFld_2" = 3 THEN (SELECT "Descrip" FROM OMGP WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_2_V")
+		WHEN TCD1."KeyFld_2" = 5 THEN (SELECT "NcmCode" FROM ONCM WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_2_V")
+		WHEN TCD1."KeyFld_2" = 9 THEN (SELECT "ItmsGrpNam" FROM OITB WHERE TO_VARCHAR("ItmsGrpCod") = TCD2."KeyFld_2_V")
+		WHEN TCD1."KeyFld_2" IN (11, 12) THEN (SELECT "GroupName" FROM OCRG WHERE TO_VARCHAR("GroupCode") = TCD2."KeyFld_2_V")
+		WHEN TCD1."KeyFld_2" = 16 THEN (SELECT "BPLName" FROM OBPL WHERE TO_VARCHAR("BPLId") = TCD2."KeyFld_2_V")
+		ELSE TCD2."KeyFld_2_V"
+	END "{2}",
+	CASE
+		WHEN TCD1."KeyFld_3" IN (1, 2, 6, 17) THEN TCD2."KeyFld_3_V"
+		WHEN TCD1."KeyFld_3" = 3 THEN (SELECT "Descrip" FROM OMGP WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_3_V")
+		WHEN TCD1."KeyFld_3" = 5 THEN (SELECT "NcmCode" FROM ONCM WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_3_V")
+		WHEN TCD1."KeyFld_3" = 9 THEN (SELECT "ItmsGrpNam" FROM OITB WHERE TO_VARCHAR("ItmsGrpCod") = TCD2."KeyFld_3_V")
+		WHEN TCD1."KeyFld_3" IN (11, 12) THEN (SELECT "GroupName" FROM OCRG WHERE TO_VARCHAR("GroupCode") = TCD2."KeyFld_3_V")
+		WHEN TCD1."KeyFld_3" = 16 THEN (SELECT "BPLName" FROM OBPL WHERE TO_VARCHAR("BPLId") = TCD2."KeyFld_3_V")
+		ELSE TCD2."KeyFld_3_V"
+	END "{3}",
+	CASE
+		WHEN TCD1."KeyFld_4" IN (1, 2, 6, 17) THEN TCD2."KeyFld_4_V"
+		WHEN TCD1."KeyFld_4" = 3 THEN (SELECT "Descrip" FROM OMGP WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_4_V")
+		WHEN TCD1."KeyFld_4" = 5 THEN (SELECT "NcmCode" FROM ONCM WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_4_V")
+		WHEN TCD1."KeyFld_4" = 9 THEN (SELECT "ItmsGrpNam" FROM OITB WHERE TO_VARCHAR("ItmsGrpCod") = TCD2."KeyFld_4_V")
+		WHEN TCD1."KeyFld_4" IN (11, 12) THEN (SELECT "GroupName" FROM OCRG WHERE TO_VARCHAR("GroupCode") = TCD2."KeyFld_4_V")
+		WHEN TCD1."KeyFld_4" = 16 THEN (SELECT "BPLName" FROM OBPL WHERE TO_VARCHAR("BPLId") = TCD2."KeyFld_4_V")
+		ELSE TCD2."KeyFld_4_V"
+	END "{4}",
+	CASE
+		WHEN TCD1."KeyFld_5" IN (1, 2, 6, 17) THEN TCD2."KeyFld_5_V"
+		WHEN TCD1."KeyFld_5" = 3 THEN (SELECT "Descrip" FROM OMGP WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_5_V")
+		WHEN TCD1."KeyFld_5" = 5 THEN (SELECT "NcmCode" FROM ONCM WHERE TO_VARCHAR("AbsEntry") = TCD2."KeyFld_5_V")
+		WHEN TCD1."KeyFld_5" = 9 THEN (SELECT "ItmsGrpNam" FROM OITB WHERE TO_VARCHAR("ItmsGrpCod") = TCD2."KeyFld_5_V")
+		WHEN TCD1."KeyFld_5" IN (11, 12) THEN (SELECT "GroupName" FROM OCRG WHERE TO_VARCHAR("GroupCode") = TCD2."KeyFld_5_V")
+		WHEN TCD1."KeyFld_5" = 16 THEN (SELECT "BPLName" FROM OBPL WHERE TO_VARCHAR("BPLId") = TCD2."KeyFld_5_V")
+		ELSE TCD2."KeyFld_5_V"
+	END "{5}"
 FROM TCD1
 	INNER JOIN TCD2
 		ON TCD2."Tcd1Id" = TCD1."AbsId"
