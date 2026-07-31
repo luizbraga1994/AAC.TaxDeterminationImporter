@@ -54,7 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SBO.Hub">
-      <HintPath>..\..\..\..\Util\DLL\SBO.Hub.dll</HintPath>
+      <HintPath>..\..\AC.SalesTaxCodes_Import\AC.SAPTaxImporter\libs\SBO.Hub.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

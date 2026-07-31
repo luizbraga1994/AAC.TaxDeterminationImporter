@@ -45,7 +45,7 @@
       <HintPath>..\packages\FastMember.1.3.0\lib\net45\FastMember.dll</HintPath>
     </Reference>
     <Reference Include="SBO.Hub">
-      <HintPath>..\..\..\..\Util\DLL\SBO.Hub.dll</HintPath>
+      <HintPath>..\..\AC.SalesTaxCodes_Import\AC.SAPTaxImporter\libs\SBO.Hub.dll</HintPath>
       <Private>true</Private>
     </Reference>
     <Reference Include="System" />
