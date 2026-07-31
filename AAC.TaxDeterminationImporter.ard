@@ -26,13 +26,10 @@
           <Files />
         </Uninstallation>
       </x86>
-      <x64 AddonExe="C:\Users\partner\Downloads\AAC.TaxDeterminationImporter\AAC.TaxDeterminationImporter\bin\Debug\AAC.TaxDeterminationImporter.exe" AddonSig="">
+      <x64 AddonExe="AAC.TaxDeterminationImporter.exe" AddonSig="">
         <Installation>
           <Files>
             <File FileName="AAC.TaxDeterminationImporter.Core.dll">
-              <Actions />
-            </File>
-            <File FileName="AAC.TaxDeterminationImporter.Core.dll.config">
               <Actions />
             </File>
             <File FileName="AAC.TaxDeterminationImporter.Core.pdb">
@@ -50,55 +47,16 @@
             <File FileName="ClosedXML.dll">
               <Actions />
             </File>
-            <File FileName="ClosedXML.pdb">
-              <Actions />
-            </File>
-            <File FileName="ClosedXML.xml">
-              <Actions />
-            </File>
             <File FileName="DocumentFormat.OpenXml.dll">
-              <Actions />
-            </File>
-            <File FileName="DocumentFormat.OpenXml.xml">
               <Actions />
             </File>
             <File FileName="ExcelNumberFormat.dll">
               <Actions />
             </File>
-            <File FileName="ExcelNumberFormat.xml">
-              <Actions />
-            </File>
             <File FileName="FastMember.dll">
               <Actions />
             </File>
-            <File FileName="Interop.SAPbobsCOM.dll">
-              <Actions />
-            </File>
-            <File FileName="Interop.SAPbouiCOM.dll">
-              <Actions />
-            </File>
             <File FileName="SBO.Hub.dll">
-              <Actions />
-            </File>
-            <File FileName="SPS.TaxDeterminationImporter.b1s">
-              <Actions />
-            </File>
-            <File FileName="SPS.TaxDeterminationImporter.Core.dll">
-              <Actions />
-            </File>
-            <File FileName="SPS.TaxDeterminationImporter.Core.dll.config">
-              <Actions />
-            </File>
-            <File FileName="SPS.TaxDeterminationImporter.Core.pdb">
-              <Actions />
-            </File>
-            <File FileName="SPS.TaxDeterminationImporter.exe">
-              <Actions />
-            </File>
-            <File FileName="SPS.TaxDeterminationImporter.exe.config">
-              <Actions />
-            </File>
-            <File FileName="SPS.TaxDeterminationImporter.pdb">
               <Actions />
             </File>
             <File FileName="Views\FrmImportLog.srf">
@@ -114,9 +72,6 @@
             <File FileName="AAC.TaxDeterminationImporter.Core.dll">
               <Actions />
             </File>
-            <File FileName="AAC.TaxDeterminationImporter.Core.dll.config">
-              <Actions />
-            </File>
             <File FileName="AAC.TaxDeterminationImporter.Core.pdb">
               <Actions />
             </File>
@@ -132,55 +87,16 @@
             <File FileName="ClosedXML.dll">
               <Actions />
             </File>
-            <File FileName="ClosedXML.pdb">
-              <Actions />
-            </File>
-            <File FileName="ClosedXML.xml">
-              <Actions />
-            </File>
             <File FileName="DocumentFormat.OpenXml.dll">
-              <Actions />
-            </File>
-            <File FileName="DocumentFormat.OpenXml.xml">
               <Actions />
             </File>
             <File FileName="ExcelNumberFormat.dll">
               <Actions />
             </File>
-            <File FileName="ExcelNumberFormat.xml">
-              <Actions />
-            </File>
             <File FileName="FastMember.dll">
               <Actions />
             </File>
-            <File FileName="Interop.SAPbobsCOM.dll">
-              <Actions />
-            </File>
-            <File FileName="Interop.SAPbouiCOM.dll">
-              <Actions />
-            </File>
             <File FileName="SBO.Hub.dll">
-              <Actions />
-            </File>
-            <File FileName="SPS.TaxDeterminationImporter.b1s">
-              <Actions />
-            </File>
-            <File FileName="SPS.TaxDeterminationImporter.Core.dll">
-              <Actions />
-            </File>
-            <File FileName="SPS.TaxDeterminationImporter.Core.dll.config">
-              <Actions />
-            </File>
-            <File FileName="SPS.TaxDeterminationImporter.Core.pdb">
-              <Actions />
-            </File>
-            <File FileName="SPS.TaxDeterminationImporter.exe">
-              <Actions />
-            </File>
-            <File FileName="SPS.TaxDeterminationImporter.exe.config">
-              <Actions />
-            </File>
-            <File FileName="SPS.TaxDeterminationImporter.pdb">
               <Actions />
             </File>
             <File FileName="Views\FrmImportLog.srf">
