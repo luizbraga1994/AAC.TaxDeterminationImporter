@@ -36,6 +36,7 @@ namespace AAC.TaxDeterminationImporter.Core.BLL
 
         public List<TaxDeterminationModel> ImportData(string filePath, int lineKey)
         {
+            TaxList = null;
             List<TaxDeterminationModel> list = GetListFromExcelFile(filePath);
             if (list.Any(m => !String.IsNullOrEmpty(m.Error)))
             {
@@ -302,6 +303,7 @@ namespace AAC.TaxDeterminationImporter.Core.BLL
         /// <returns></returns>
         public List<TaxDeterminationModel> UpdateTaxes(string filePath, int lineKey, int lineValue)
         {
+            TaxList = null;
             List<TaxDeterminationModel> list = GetListFromExcelFile(filePath);
             List<TaxDeterminationModel> errorList = this.ValidateTax(list);
             if (errorList.Any(m => !String.IsNullOrEmpty(m.Error)))
@@ -546,9 +548,9 @@ namespace AAC.TaxDeterminationImporter.Core.BLL
                             TaxDeterminationUsageModel usageModel = new TaxDeterminationUsageModel();
                             usageModel.Usage = headerRow.Cell(j).Value.ToString();
                             usageModel.UsageId = usageList.FirstOrDefault(m => m.Usage == headerRow.Cell(j).Value.ToString()).UsageId;
-                            usageModel.TaxCodePurchase = row.Cell(j).Value.ToString();
-                            usageModel.TaxCode = row.Cell(j + 1).Value.ToString();
-                            usageModel.TaxCodeExpense = row.Cell(j + 2).Value.ToString();
+                            usageModel.TaxCodePurchase = row.Cell(j).Value.ToString().Trim();
+                            usageModel.TaxCode = row.Cell(j + 1).Value.ToString().Trim();
+                            usageModel.TaxCodeExpense = row.Cell(j + 2).Value.ToString().Trim();
                             model.TaxUsageList.Add(usageModel);
                         }
 
